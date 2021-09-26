@@ -22,6 +22,11 @@ body {
   background-color: #753682;
   border: solid 1px black;
   height: 30vh;
+  opacity: 0.5;
+}
+
+.active-player {
+  opacity: 1;
 }
 
 button {
