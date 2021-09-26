@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-size: 2rem;
+}
+
+.main-container {
+  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.player {
+  background-color: #753682;
+  border: solid 1px black;
+  height: 30vh;
+}
+
+button {
+  font-size: 2rem;
+  margin: 5px;
+}
+
+img {
+  width: 100px;
+}
