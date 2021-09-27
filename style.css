@@ -16,13 +16,29 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
 }
 
 .player {
-  background-color: #753682;
-  border: solid 1px black;
-  height: 30vh;
+  background-color: rgba(255, 255, 255, 0.555);
+  height: 85vh;
+  width: 40vw;
   opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-transform: uppercase;
+}
+
+.player.one {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.player.two {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .active-player {
@@ -32,6 +48,37 @@ body {
 button {
   font-size: 2rem;
   margin: 5px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 30px;
+  border: 0;
+  padding: 9px;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+#dice-img {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#restart {
+  top: 10%;
+}
+
+#dice {
+  bottom: 20%;
+}
+
+#hold {
+  bottom: 10%;
+}
+
+#dice-img {
+  top: 40%;
 }
 
 img {
@@ -39,5 +86,39 @@ img {
 }
 
 .hide {
-  visibility: hidden;
+  display: none;
+}
+
+.current-container {
+  border-radius: 10px;
+  background-color: #c7365f;
+  width: 40%;
+  color: white;
+}
+
+.current-container h4 {
+  font-size: 1rem;
+  font-weight: lighter;
+  padding: 10px 0;
+}
+
+.current-container h5 {
+  font-size: 2rem;
+  padding: 7px 0;
+}
+
+.points {
+  font-size: 5rem;
+  color: #c7365f;
+  font-weight: lighter;
+}
+
+.winner {
+  background-color: #2f2f2f;
+}
+
+.winner > h2 {
+  color: #c7365f;
+  font-size: 2.2rem;
+  margin-top: 80px;
 }

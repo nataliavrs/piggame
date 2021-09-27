@@ -2,6 +2,7 @@
 
 let currentScores = document.querySelectorAll(".current-score");
 let player = document.querySelectorAll(".player");
+let playerTitle = document.querySelectorAll(".player-title");
 let points = document.querySelectorAll(".points");
 let currentScore = 0;
 let currentPlayer = 0;
@@ -10,6 +11,9 @@ let currentPlayer = 0;
 document.getElementById("dice").addEventListener("click", function () {
   if (Number(points[currentPlayer].innerHTML) >= 20) {
     console.log(`Player ${currentPlayer + 1} wins!`);
+    playerTitle[currentPlayer].innerHTML = `Player ${
+      currentPlayer + 1
+    } wins! 🎉`;
   } else {
     //   Random number
     const randomNumber = Math.floor(Math.random() * 5) + 1;
@@ -50,6 +54,10 @@ document.getElementById("hold").addEventListener("click", function () {
 
   if (Number(points[currentPlayer].innerHTML) >= 20) {
     console.log(`Player ${currentPlayer + 1} wins!`);
+    player[currentPlayer].classList.add("winner");
+    playerTitle[currentPlayer].innerHTML = `Player ${
+      currentPlayer + 1
+    } wins! 🎉`;
   } else {
     if (currentPlayer === 0) {
       currentPlayer = 1;
