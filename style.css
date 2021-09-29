@@ -57,6 +57,7 @@ button {
   font-size: 1.1rem;
   text-transform: uppercase;
   opacity: 0.8;
+  cursor: pointer;
 }
 
 #dice-img {
@@ -144,6 +145,7 @@ img {
   border-radius: 10px;
   color: white;
   padding: 7px;
+  cursor: pointer;
 }
 
 .dismiss-banner:hover {

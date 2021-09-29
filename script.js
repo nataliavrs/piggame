@@ -5,19 +5,18 @@
 Refactor
 */
 
-let currentScores = document.querySelectorAll(".current-score");
-let player = document.querySelectorAll(".player");
-let playerTitle = document.querySelectorAll(".player-title");
-let points = document.querySelectorAll(".points");
 let currentScore = 0;
 let currentPlayer = 0;
-let winningPoints = 20;
-let banner = document.getElementById("banner");
+const winningPoints = 20;
+const currentScores = document.querySelectorAll(".current-score");
+const player = document.querySelectorAll(".player");
+const playerTitle = document.querySelectorAll(".player-title");
+const points = document.querySelectorAll(".points");
+const banner = document.getElementById("banner");
 banner.innerHTML = `Hit ${winningPoints} points to win! <span class="dismiss-banner">Dismiss</span>`;
 const diceImg = document.getElementById("dice-img");
 
 // Dismiss banner
-// Roll dice
 document
   .querySelector(".dismiss-banner")
   .addEventListener("click", function () {
@@ -26,40 +25,25 @@ document
 
 // Roll dice
 document.getElementById("dice").addEventListener("click", function () {
-  if (Number(points[currentPlayer].innerHTML) >= winningPoints) {
-    console.log(`Player ${currentPlayer + 1} wins!`);
-    playerTitle[currentPlayer].innerHTML = `Player ${
-      currentPlayer + 1
-    } wins! 🎉`;
-    console.log(`
-    ROLL:
-    CURRENT SCORE = ${currentScore}
-    CURRENT PLAYER ${currentPlayer + 1} POINTS = ${
-      points[currentPlayer].innerHTML
-    }
-      `);
-  } else {
-    //   Random number
-    const randomNumber = Math.floor(Math.random() * 5) + 1;
-    //   Show dice face image
-    diceImg.src = `images/dice-${randomNumber}.png`;
-    diceImg.classList.remove("hide");
-    console.log("roll dice", randomNumber);
-    //   Add points to current player's score
-    currentScores[currentPlayer].innerHTML = currentScore += randomNumber;
-    //   If rolls "1" loses current points and skips turn
-    if (randomNumber === 1 && currentPlayer === 0) {
+  //   Generate a random number from 1 to 6
+  const randomNumber = Math.trunc(Math.random() * 6) + 1;
+  //   Show dice face image
+  diceImg.src = `images/dice-${randomNumber}.png`;
+  diceImg.classList.remove("hide");
+  console.log("rolled dice", randomNumber);
+  //   Add points to current player's score
+  currentScores[currentPlayer].innerHTML = currentScore += randomNumber;
+  //   If rolls "1" loses current points and skips turn
+  if (randomNumber === 1) {
+    currentScore = 0;
+    player[currentPlayer].classList.remove("active-player");
+    currentScores[currentPlayer].innerHTML = 0;
+    if (currentPlayer === 0) {
       currentPlayer = 1;
-      currentScore = 0;
-      currentScores[0].innerHTML = 0;
-      player[0].classList.remove("active-player");
       player[1].classList.add("active-player");
-    } else if (randomNumber === 1 && currentPlayer === 1) {
+    } else {
       currentPlayer = 0;
-      currentScore = 0;
-      currentScores[1].innerHTML = 0;
       player[0].classList.add("active-player");
-      player[1].classList.remove("active-player");
     }
   }
 });
@@ -72,27 +56,20 @@ document.getElementById("hold").addEventListener("click", function () {
   currentScores[currentPlayer].innerHTML = currentScore;
 
   if (Number(points[currentPlayer].innerHTML) >= winningPoints) {
-    // console.log(`Player ${currentPlayer + 1} wins!`);
     player[currentPlayer].classList.add("winner");
     playerTitle[currentPlayer].innerHTML = `Player ${
       currentPlayer + 1
     } wins! 🎉`;
-
-    // // console.log(`
-    // // HOLD:
-    // // CURRENT SCORE = ${currentScore}
-    // // CURRENT PLAYER ${currentPlayer + 1} POINTS = ${
-    // //   points[currentPlayer].innerHTML
-    // // }
-    //   `);
+    // Game is over
+    document.getElementById("dice").disabled = true;
+    document.getElementById("hold").disabled = true;
   } else {
+    player[currentPlayer].classList.remove("active-player");
     if (currentPlayer === 0) {
       currentPlayer = 1;
-      player[0].classList.remove("active-player");
       player[1].classList.add("active-player");
     } else {
       currentPlayer = 0;
-      player[1].classList.remove("active-player");
       player[0].classList.add("active-player");
     }
   }
@@ -111,11 +88,6 @@ document.getElementById("restart").addEventListener("click", function () {
   player[1].classList.remove("active-player");
   player[0].classList.add("active-player");
   diceImg.classList.add("hide");
-
-  // console.log(`
-  //   NEW GAME:
-  //   CURRENT SCORE = ${currentScore}
-  //   1 PLAYER POINTS = ${points[0].innerHTML}
-  //   2 PLAYER POINTS = ${points[1].innerHTML}
-  //     `);
+  document.getElementById("dice").disabled = false;
+  document.getElementById("hold").disabled = false;
 });
