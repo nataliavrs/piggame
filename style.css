@@ -43,6 +43,7 @@ body {
 
 .active-player {
   opacity: 1;
+  transition: all 1s;
 }
 
 button {
@@ -58,6 +59,11 @@ button {
   text-transform: uppercase;
   opacity: 0.8;
   cursor: pointer;
+}
+
+button:active {
+  transform: translate(-50%, 2px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
 }
 
 #dice-img {
@@ -132,23 +138,52 @@ img {
   border-radius: 20px;
   border: 0;
   padding: 8px;
-  font-size: 3rem;
-  width: 600px;
-  text-transform: uppercase;
+  font-size: 1.2rem;
   opacity: 0.8;
+  font-weight: bold;
   background-color: white;
 }
 
+.developed {
+  font-size: 1rem;
+  margin: 10px 0;
+  font-weight: 100;
+  font-style: italic;
+}
+
 .dismiss-banner {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   background-color: grey;
   border-radius: 10px;
   color: white;
-  padding: 7px;
+  padding: 5px;
   cursor: pointer;
+  width: 100px;
+  display: block;
+  margin: auto;
 }
 
 .dismiss-banner:hover {
   background-color: rgb(77, 77, 77);
   transition: all 1s;
+}
+
+.player-title {
+  margin-top: 30px;
+}
+
+.fa-heart {
+  color: #dc3545;
+}
+
+#banner > ul {
+  list-style: none;
+}
+
+#info {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  color: white;
+  opacity: 0.9;
 }
